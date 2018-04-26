@@ -4,8 +4,16 @@ TRAIN LAUNCHER
 """
 
 import configparser
-from hourglass_tiny import HourglassModel
 from datagen import DataGenerator
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("--CPU",help="trained by cpu",action = "store_true")
+args = parser.parse_args()
+if args.CPU:
+	from hourglass_tiny_CPU import HourglassModel
+else:
+	from hourglass_tiny import HourglassModel
+
 
 def process_config(conf_file):
 	"""
